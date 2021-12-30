@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="george" id="create_schemas_changeSet" >
+        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/create_schemas.sql"/>
+        <rollback>
+            drop schema basket_schema;
+            drop schema auth;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="create_user_table" author="george">
+        <createTable tableName="USER" catalogName="auth">
+            <column defaultValue="(UUID())" name="ID" type="varchar(${primary.size})">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USERNAME" type="varchar(60)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="USER_USERNAME_UNIQUE"/>
+            </column>
+            <column name="PASSWORD" type="varchar(100)"> </column>
+            <column name="NAME" type="varchar(100)"> </column>
+        </createTable>
+        <rollback>
+            DROP TABLE USER;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,2 @@
+CREATE SCHEMA  IF NOT EXISTS `auth` CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE SCHEMA  IF NOT EXISTS `basket_schema` CHARACTER SET utf8 COLLATE utf8_general_ci;

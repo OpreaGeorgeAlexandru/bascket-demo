@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  database-service:
+    image: mysql/mysql-server:8.0
+    container_name: database-service
+    restart: always
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3309:3306'
